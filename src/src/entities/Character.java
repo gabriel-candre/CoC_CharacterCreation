@@ -8,22 +8,32 @@ public class Character {
     private Integer sanity;
     private Integer health;
     private Integer strength;
+    private Integer constitution;
+    private Integer size;
     private Integer intelligence;
+    private Integer power;
+    private Integer education;
     private Integer dexterity;
+    private Integer appearance;
     private Integer luck;
 
     public Character(){}
 
-    public Character(String name, int age, String profession, int sanity, int health, int strength,
-                     int intelligence, int dexterity, int luck) {
+    public Character(String name, int age, String profession, int sanity, int health, int strength, int constitution,
+                     int size, int intelligence, int power, int education, int dexterity, int apperance, int luck) {
         this.name = name;
         this.age = age;
         this.profession = profession;
         this.sanity = sanity;
         this.health = health;
         this.strength = strength;
+        this.constitution = constitution;
+        this.size = size;
         this.intelligence = intelligence;
+        this.power = power;
+        this.education = education;
         this.dexterity = dexterity;
+        this.appearance = apperance;
         this.luck = luck;
     }
 
@@ -75,6 +85,22 @@ public class Character {
         this.strength = strength;
     }
 
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public int getIntelligence() {
         return intelligence;
     }
@@ -83,12 +109,36 @@ public class Character {
         this.intelligence = intelligence;
     }
 
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getEducation() {
+        return education;
+    }
+
+    public void setEducation(int education) {
+        this.education = education;
+    }
+
     public int getDexterity() {
         return dexterity;
     }
 
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
+    }
+
+    public int getAppearance() {
+        return appearance;
+    }
+
+    public void setAppearance(int appearance) {
+        this.appearance = appearance;
     }
 
     public int getLuck() {
@@ -107,7 +157,12 @@ public class Character {
                 +"\n Sanity: " + getSanity()
                 +"\n Max Health: " + getHealth()
                 +"\n Strength: " + getStrength()
+                +"\n Constitution: " + getConstitution()
+                +"\n Size: " + getSize()
+                +"\n Appearance: " + getAppearance()
                 +"\n Intelligence: " + getIntelligence()
+                +"\n Power: " + getPower()
+                +"\n Education: " + getEducation()
                 +"\n Dexterity: " + getDexterity()
                 +"\n Luck: " + getLuck();
     }
