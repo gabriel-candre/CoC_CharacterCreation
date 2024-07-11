@@ -22,13 +22,6 @@ public class Program {
         System.out.print("Do you need the program to roll for you? (y/n) ");
         char rollOpt = sc.next().charAt(0);
 
-//        while(rollOpt != 'y' && rollOpt != 'Y' && rollOpt != 'n' && rollOpt != 'N') {
-//            System.out.println("Option invalid! Try again! ");
-//            System.out.print("Do you need the program to roll for you? (y/n) ");
-//            rollOpt = sc.next().charAt(0);
-//        }
-
-
         char reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int strength = 0;
@@ -44,7 +37,6 @@ public class Program {
                     strength *= 5;
 
                     System.out.println("Your Strength: " + strength);
-
                     break;
                 case 'n':
                 case 'N':
@@ -57,7 +49,6 @@ public class Program {
                     strength *= 5;
 
                     System.out.println("Your Strength: " + strength);
-
                     break;
                 default:
                     System.out.println("Option Invalid! Try again!");
@@ -71,7 +62,8 @@ public class Program {
                 System.out.print("Do you need the program to roll for you? (y/n) ");
                 rollOpt = sc.next().charAt(0);
             } else {
-             rollOpt = 'n';
+                character.setStrength(strength);
+                rollOpt = 'n';
             }
         }
 
