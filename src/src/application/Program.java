@@ -27,7 +27,7 @@ public class Program {
         char reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int strength = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -77,7 +77,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int cons = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -127,7 +127,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int size = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -179,7 +179,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int dex = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -229,7 +229,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int appe = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -279,7 +279,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int inte = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -331,7 +331,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int pow = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -381,7 +381,7 @@ public class Program {
         reRoll = 'y';
         while (reRoll == 'y' || reRoll == 'Y') {
             int edu = 0;
-            switch(rollOpt) {
+            switch (rollOpt) {
                 case 'y':
                 case 'Y':
 
@@ -438,9 +438,9 @@ public class Program {
         System.out.println("DEX: " + character.getDexterity());
 
         System.out.print("Now, enter your investigator age: ");
-        int age = sc.nextInt();
-        if (age >= 15 && age <= 19) {
-            System.out.println("Age: " + age + ": Deduct 5 points from STRENGTH, SIZE and EDUCATION.");
+        character.setAge(sc.nextInt());
+        if (character.getAge() >= 15 && character.getAge() <= 19) {
+            System.out.println("Age: " + character.getAge() + ": Deduct 5 points from STRENGTH, SIZE and EDUCATION.");
 
             System.out.println("Roll twice for Luck: (3D6) x 5");
             System.out.print("Do you need the program to roll for you? (y/n) ");
@@ -450,7 +450,7 @@ public class Program {
             while (reRoll == 'y' || reRoll == 'Y') {
                 int luck1 = 0;
                 int luck2 = 0;
-                switch(rollOpt) {
+                switch (rollOpt) {
                     case 'y':
                     case 'Y':
                         System.out.println("First roll: ");
@@ -517,8 +517,8 @@ public class Program {
                     rollOpt = sc.next().charAt(0);
                 }
             }
-        } else if (age >= 20 && age <= 39) {
-            System.out.println("Age: " + age + ": Make an improvement check for EDUCATION");
+        } else if (character.getAge() >= 20 && character.getAge() <= 39) {
+            System.out.println("Age: " + character.getAge() + ": Make an improvement check for EDUCATION");
             System.out.println("Roll your D100, if th result is greater than your current EDU, ad 1D10 points to your EDU.");
             System.out.print("Do you need the program to roll 1D100 for you?(y/n) ");
             rollOpt = sc.next().charAt(0);
@@ -527,8 +527,8 @@ public class Program {
             while (reRoll == 'y' || reRoll == 'Y') {
                 switch (rollOpt) {
                     case 'y':
-                    case'Y':
-                        int improvEdu = (int) (Math.random() * (101 -1) + 1);
+                    case 'Y':
+                        int improvEdu = (int) (Math.random() * (101 - 1) + 1);
                         if (improvEdu > character.getEducation()) {
                             System.out.println("Current EDUCATION: " + character.getEducation());
                             System.out.println("Roll: " + improvEdu);
@@ -537,7 +537,7 @@ public class Program {
                             rollOpt = sc.next().charAt(0);
 
                             boolean done = false;
-                            while(!done) {
+                            while (!done) {
                                 switch (rollOpt) {
                                     case 'y':
                                     case 'Y':
@@ -551,7 +551,7 @@ public class Program {
                                     case 'N':
                                         System.out.print("Enter your 1D10 roll: ");
                                         improvEdu = sc.nextInt();
-                                        while(improvEdu < 1 || improvEdu > 10) {
+                                        while (improvEdu < 1 || improvEdu > 10) {
                                             System.out.println("Invalid value! Try again!");
                                             System.out.print("Your roll: ");
                                             improvEdu = sc.nextInt();
@@ -599,11 +599,210 @@ public class Program {
                     rollOpt = sc.next().charAt(0);
                 }
             }
+        } else if (character.getAge() >= 40 && character.getAge() <= 49) {
+            System.out.println("Age: " + character.getAge() + ": Make two improvement checks for EDUCATION");
+            System.out.println("Roll your D100, if the result is greater than your current EDU, add 1D10 points to your EDU.");
+            System.out.print("Do you need the program to roll 1D100 for you?(y/n) ");
+            rollOpt = sc.next().charAt(0);
+
+            int improvValue = 0;
+
+            reRoll = 'y';
+            while(reRoll == 'y' || reRoll == 'Y') {
+                switch (rollOpt) {
+                    case 'y':
+                    case 'Y':
+                        int checkEdu = (int) (Math.random() * (101 - 1) + 1);
+                        System.out.println("1st roll: " + checkEdu);
+                        if (checkEdu > character.getEducation()) {
+                            System.out.println("Now, roll 1D10 and add the value to your EDUCATION");
+                            System.out.print("Do you need the program to roll 1D10 for you?(y/n) ");
+                            rollOpt = sc.next().charAt(0);
+                            boolean done = false;
+                            while (!done) {
+                                switch (rollOpt) {
+                                    case 'y':
+                                    case 'Y':
+                                        improvValue = (int) (Math.random() * (11 - 1) + 1);
+                                        System.out.println("Roll: " + improvValue);
+                                        character.setEducation(character.getEducation() + improvValue);
+                                        System.out.println("Updated EDUCATION: " + character.getEducation());
+                                        done = true;
+                                        break;
+                                    case 'n':
+                                    case 'N':
+                                        System.out.print("Enter 1D10 value: ");
+                                        improvValue = sc.nextInt();
+                                        while (improvValue > 10 || improvValue < 1) {
+                                            System.out.print("Invalid value! Try again: ");
+                                            improvValue = sc.nextInt();
+                                        }
+                                        System.out.println("Roll: " + improvValue);
+                                        character.setEducation(character.getEducation() + improvValue);
+                                        System.out.println("Updated EDUCATION: " + character.getEducation());
+                                        done = true;
+                                    default:
+                                        System.out.println("Option Invalid! Try again!");
+                                        System.out.print("Do you need the program to roll for you? (y/n) ");
+                                        rollOpt = sc.next().charAt(0);
+                                        break;
+                                }
+                            }
+                        } else {
+                            checkEdu = (int) (Math.random() * (101 - 1) + 1);
+                            System.out.println("2nd roll: " + checkEdu);
+                            if (checkEdu > character.getEducation()) {
+                                System.out.println("Now, roll 1D10 and add the value to your EDUCATION");
+                                System.out.print("Do you need the program to roll 1D10 for you?(y/n) ");
+                                rollOpt = sc.next().charAt(0);
+                                boolean done = false;
+                                while (!done) {
+                                    switch (rollOpt) {
+                                        case 'y':
+                                        case 'Y':
+                                            int improvEdu = (int) (Math.random() * (11 - 1) + 1);
+                                            System.out.println("Roll: " + improvEdu);
+                                            character.setEducation(character.getEducation() + improvEdu);
+                                            System.out.println("Updated EDUCATION: " + character.getEducation());
+                                            done = true;
+                                            break;
+                                        case 'n':
+                                        case 'N':
+                                            System.out.print("Enter 1D10 value: ");
+                                            improvValue = sc.nextInt();
+                                            while (improvValue > 10 || improvValue < 1) {
+                                                System.out.print("Invalid value! Try again: ");
+                                                improvValue = sc.nextInt();
+                                            }
+                                            System.out.println("Roll: " + improvValue);
+                                            character.setEducation(character.getEducation() + improvValue);
+                                            System.out.println("Updated EDUCATION: " + character.getEducation());
+                                            done = true;
+                                        default:
+                                            System.out.println("Option Invalid! Try again!");
+                                            System.out.print("Do you need the program to roll for you? (y/n) ");
+                                            rollOpt = sc.next().charAt(0);
+                                            break;
+                                    }
+                                }
+                            } else {
+                                System.out.println("Improvements checks failed!");
+                            }
+                        }
+                        break;
+                    case 'n':
+                    case 'N':
+                        System.out.print("Enter 1st roll: ");
+                        checkEdu = sc.nextInt();
+                        while (checkEdu < 1 || checkEdu > 100) {
+                            System.out.print("Invalid value! Try again: ");
+                            checkEdu = sc.nextInt();
+                        }
+                        if (checkEdu > character.getEducation()) {
+                            if (checkEdu > character.getEducation()) {
+                                System.out.println("Now, roll 1D10 and add the value to your EDUCATION");
+                                System.out.print("Do you need the program to roll 1D10 for you?(y/n) ");
+                                rollOpt = sc.next().charAt(0);
+                                boolean done = false;
+                                while (!done) {
+                                    switch (rollOpt) {
+                                        case 'y':
+                                        case 'Y':
+                                            int improvEdu = (int) (Math.random() * (11 - 1) + 1);
+                                            System.out.println("Roll: " + improvEdu);
+                                            character.setEducation(character.getEducation() + improvEdu);
+                                            System.out.println("Updated EDUCATION: " + character.getEducation());
+                                            done = true;
+                                            break;
+                                        case 'n':
+                                        case 'N':
+                                            System.out.print("Enter 1D10 value: ");
+                                            improvValue = sc.nextInt();
+                                            while (improvValue > 10 || improvValue < 1) {
+                                                System.out.print("Invalid value! Try again: ");
+                                                improvValue = sc.nextInt();
+                                            }
+                                            System.out.println("Roll: " + improvValue);
+                                            character.setEducation(character.getEducation() + improvValue);
+                                            System.out.println("Updated EDUCATION: " + character.getEducation());
+                                            done = true;
+                                            break;
+                                        default:
+                                            System.out.println("Option Invalid! Try again!");
+                                            System.out.print("Do you need the program to roll for you? (y/n) ");
+                                            rollOpt = sc.next().charAt(0);
+                                            break;
+                                    }
+                                }
+                            } else {
+                                System.out.println("Improvements checks failed!");
+                            }
+                        } else {
+                            System.out.print("Enter 2nd roll: ");
+                            checkEdu = sc.nextInt();
+                            while (checkEdu < 1 || checkEdu > 100) {
+                                System.out.print("Invalid value! Try again: ");
+                                checkEdu = sc.nextInt();
+                            }
+                            if (checkEdu > character.getEducation()) {
+                                if (checkEdu > character.getEducation()) {
+                                    System.out.println("Now, roll 1D10 and add the value to your EDUCATION");
+                                    System.out.print("Do you need the program to roll 1D10 for you?(y/n) ");
+                                    rollOpt = sc.next().charAt(0);
+                                    boolean done = false;
+                                    while (!done) {
+                                        switch (rollOpt) {
+                                            case 'y':
+                                            case 'Y':
+                                                int improvEdu = (int) (Math.random() * (11 - 1) + 1);
+                                                System.out.println("Roll: " + improvEdu);
+                                                character.setEducation(character.getEducation() + improvEdu);
+                                                System.out.println("Updated EDUCATION: " + character.getEducation());
+                                                done = true;
+                                                break;
+                                            case 'n':
+                                            case 'N':
+                                                System.out.print("Enter 1D10 value: ");
+                                                improvValue = sc.nextInt();
+                                                while (improvValue > 10 || improvValue < 1) {
+                                                    System.out.print("Invalid value! Try again: ");
+                                                    improvValue = sc.nextInt();
+                                                }
+                                                System.out.println("Roll: " + improvValue);
+                                                character.setEducation(character.getEducation() + improvValue);
+                                                System.out.println("Updated EDUCATION: " + character.getEducation());
+                                                done = true;
+                                                break;
+                                            default:
+                                                System.out.println("Option Invalid! Try again!");
+                                                System.out.print("Do you need the program to roll for you? (y/n) ");
+                                                rollOpt = sc.next().charAt(0);
+                                                break;
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("Improvements checks failed!");
+                                }
+                            }
+                            break;
+                        }
+                        break;
+                    default: //*****
+                        System.out.println("Option Invalid! Try again!");
+                        System.out.print("Do you need the program to roll for you? (y/n) ");
+                        rollOpt = sc.next().charAt(0);
+                        break;
+                }
+                System.out.print("Do you want to reroll? (y/n) ");
+                reRoll = sc.next().charAt(0);
+                if (reRoll == 'y' || reRoll == 'Y') {
+                    character.setEducation(character.getEducation() - improvValue);
+                    System.out.print("Do you need the program to roll for you? (y/n) ");
+                    rollOpt = sc.next().charAt(0);
+                }
+            }
+
         }
-        System.out.println("-----");
-
-
-
         sc.close();
     }
 }
